@@ -6,7 +6,12 @@ import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,10 +36,11 @@ public class RequestController {
 		return novo;
 	}
 
-	@RequestMapping("/desafio")
-	public List<Desafio> list() {
+	@CrossOrigin(origins = "http://localhost:4200")
+	@GetMapping("/desafio/")
+	public ResponseEntity<?> list() {
 		List<Desafio> lista = desafioService.list();
-		return lista;
+		return new ResponseEntity<List<Desafio>>(lista, HttpStatus.OK);
 	}
 
 }
