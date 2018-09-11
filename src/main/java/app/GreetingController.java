@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import model.Desafio;
-import repository.DesafioRepository;
+
 
 @RestController
 public class GreetingController {
@@ -17,8 +17,7 @@ public class GreetingController {
 	private static final String template = "custon Hello, %s!";
 	private final AtomicLong counter = new AtomicLong();
 
-	@Autowired
-	private DesafioRepository desafioRepository;
+
 
 	@RequestMapping("/greeting")
 	public Greeting greeting(@RequestParam(value = "name", defaultValue = "Wossrld") String name) {
@@ -67,8 +66,8 @@ public class GreetingController {
 				}
 			}
 		}
-		desafioRepository.save(novo);
-		List<Desafio> lista = desafioRepository.findAll();
+//		desafioRepository.save(novo);
+//		List<Desafio> lista = desafioRepository.findAll();
 		return this.obterResponseJson(name);
 	}
 
