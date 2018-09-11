@@ -44,15 +44,17 @@ public class GreetingController {
 		}
 //		System.out.print("---->");
 		boolean[] possiveisposicoes = new boolean[name.length()];
-		for (int i = 102; i <= 122; i++) {
+		for (int i = 98; i <= 122; i++) {
 //			System.out.print("<--posicao -->");
 //			System.out.println(mapping[i] - 1);
 //			System.out.println(mapping[i] + 1);
-			if (mapping[i] - 1 >= 0 && mapping[i] < name.length()) {// desprezar algumas posições inválidas
+			if (i != 97 && i != 101 && i != 105 && i != 111 && i != 117 && mapping[i] - 1 >= 0
+					&& mapping[i] < name.length()) {// desprezar algumas posições inválidas
 				possiveisposicoes[mapping[i]] = true;// se tando a posição do carater como válida
 			}
 		}
-		System.out.print("<--resultado final-->");
+		System.out.print("<--resultado finanovo testel-->");
+		System.out.print("<--resultado finanovo testel-->");
 		for (int i = 0; i < name.length(); i++) {
 			if (possiveisposicoes[i]) {
 				System.out.print("<--posicao valida-->");
@@ -70,12 +72,29 @@ public class GreetingController {
 		return this.obterResponseJson(name);
 	}
 
+	/**
+	 * Verifica se o antecessor e o sucessor são vogais
+	 * 
+	 * @param copia
+	 * @param i
+	 * @return
+	 */
 	private boolean verifificaCondicaoAtendida(String copia, int i) {
-		System.out.print(copia.charAt(i - 1));
-		System.out.print("<--comparando-->");
-		System.out.print(copia.charAt(i + 1));
-		System.out.println("-----");
-		if ((int) copia.charAt(i - 1) < 102 && (int) copia.charAt(i + 1) < 102) {
+		if (this.verificaVogal(copia.charAt(i - 1)) && this.verificaVogal(copia.charAt(i + 1))) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Verifica se é vogal com base na tabela ascii letras minucculas
+	 * 
+	 * @param a
+	 * @return
+	 */
+	private boolean verificaVogal(Character a) {
+		int intVAlue = (int) a;
+		if (intVAlue != 97 || intVAlue != 101 || intVAlue != 105 || intVAlue != 111 || intVAlue != 117) {
 			return true;
 		}
 		return false;
