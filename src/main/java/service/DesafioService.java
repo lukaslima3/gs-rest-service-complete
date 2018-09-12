@@ -1,6 +1,7 @@
 package service;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -30,13 +31,13 @@ public class DesafioService {
 	private Character processaResultado(Desafio novo) {
 		String name = novo.getEntrada();
 		String copia = name.toLowerCase();
-		Map<Character, Character> conjuntosolucao = new HashMap<Character, Character>();
+		Map<Character, Character> conjuntosolucao = new LinkedHashMap<Character, Character>();
 
 		for (int i = 0; i < name.length() - 1; i++) {
 			if (i > 0 && !conjuntosolucao.containsKey(copia.charAt(i)) && this.verifificaCondicaoAtendida(copia, i)) {
 				System.out.println((int) copia.charAt(i));
 				conjuntosolucao.put(copia.charAt(i), name.charAt(i + 1));
-			} else if (!this.verificaVogal(copia.charAt(i))) {
+			} else if (this.verificaVogal(copia.charAt(i))) {
 				conjuntosolucao.put(copia.charAt(i), null);
 			}
 		}
