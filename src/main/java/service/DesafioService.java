@@ -37,7 +37,7 @@ public class DesafioService {
 			if (i > 0 && !conjuntosolucao.containsKey(copia.charAt(i)) && this.verifificaCondicaoAtendida(copia, i)) {
 				System.out.println((int) copia.charAt(i));
 				conjuntosolucao.put(copia.charAt(i), name.charAt(i + 1));
-			} else if (this.verificaVogal(copia.charAt(i))) {
+			} else if (!this.verificaVogal(copia.charAt(i))) {
 				conjuntosolucao.put(copia.charAt(i), null);
 			}
 		}
