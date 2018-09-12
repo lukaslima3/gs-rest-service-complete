@@ -33,11 +33,11 @@ public class DesafioService {
 		String copia = name.toLowerCase();
 		Map<Character, Character> conjuntosolucao = new LinkedHashMap<Character, Character>();
 
-		for (int i = 0; i < name.length() - 1; i++) {
-			if (i > 0 && !conjuntosolucao.containsKey(copia.charAt(i)) && this.verifificaCondicaoAtendida(copia, i)) {
+		for (int i = 0; i < name.length(); i++) {
+			if (i > 1 && !conjuntosolucao.containsKey(copia.charAt(i)) && this.verifificaCondicaoAtendida(copia, i)) {
 				System.out.println((int) copia.charAt(i));
-				conjuntosolucao.put(copia.charAt(i), name.charAt(i + 1));
-			} else if (!this.verificaVogal(copia.charAt(i))) {
+				conjuntosolucao.put(copia.charAt(i), copia.charAt(i));
+			} else if (this.verificaVogal(copia.charAt(i))) {
 				conjuntosolucao.put(copia.charAt(i), null);
 			}
 		}
@@ -62,8 +62,8 @@ public class DesafioService {
 	 * @return
 	 */
 	private boolean verifificaCondicaoAtendida(String copia, int i) {
-		if (this.verificaVogal(copia.charAt(i - 1)) && this.verificaVogal(copia.charAt(i + 1))
-				&& !this.verificaVogal(copia.charAt(i))) {
+		if (!this.verificaVogal(copia.charAt(i - 1)) && this.verificaVogal(copia.charAt(i -2))
+				&& this.verificaVogal(copia.charAt(i))) {
 			return true;
 		}
 		return false;
